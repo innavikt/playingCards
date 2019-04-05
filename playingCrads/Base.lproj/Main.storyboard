@@ -18,16 +18,22 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view opaque="NO" contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="heo-dN-90X" customClass="PlayingCardView" customModule="playingCrads" customModuleProvider="target">
-                                <rect key="frame" x="20" y="40" width="335" height="607"/>
+                                <rect key="frame" x="20" y="75.5" width="335" height="536"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" priority="750" constant="800" id="2ir-Vl-lg4"/>
+                                    <constraint firstAttribute="width" secondItem="heo-dN-90X" secondAttribute="height" multiplier="5:8" id="Sir-9U-DZP"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.80270824380000005" blue="0.2574446057" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="heo-dN-90X" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="Fuw-P1-xn9"/>
-                            <constraint firstItem="heo-dN-90X" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="N5O-Dh-2QC"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="heo-dN-90X" secondAttribute="trailing" constant="20" id="yU7-ip-uYS"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="heo-dN-90X" secondAttribute="bottom" constant="20" id="zhE-9c-xvu"/>
+                            <constraint firstItem="heo-dN-90X" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="AVU-Ap-RIo"/>
+                            <constraint firstItem="heo-dN-90X" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="Fuw-P1-xn9"/>
+                            <constraint firstItem="heo-dN-90X" firstAttribute="top" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="N5O-Dh-2QC"/>
+                            <constraint firstItem="heo-dN-90X" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="tUv-Gc-FBF"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="heo-dN-90X" secondAttribute="trailing" constant="20" id="yU7-ip-uYS"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="heo-dN-90X" secondAttribute="bottom" constant="20" id="zhE-9c-xvu"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
