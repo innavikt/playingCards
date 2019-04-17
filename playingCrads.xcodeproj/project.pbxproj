@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9D2B621322679550005B5E57 /* CardBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2B621222679550005B5E57 /* CardBehavior.swift */; };
 		9DE271C822433A1D0021268E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DE271C722433A1D0021268E /* AppDelegate.swift */; };
 		9DE271CA22433A1D0021268E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DE271C922433A1D0021268E /* ViewController.swift */; };
 		9DE271CD22433A1D0021268E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DE271CB22433A1D0021268E /* Main.storyboard */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9D2B621222679550005B5E57 /* CardBehavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardBehavior.swift; sourceTree = "<group>"; };
 		9DE271C422433A1D0021268E /* playingCrads.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = playingCrads.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DE271C722433A1D0021268E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9DE271C922433A1D0021268E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -61,6 +63,7 @@
 			isa = PBXGroup;
 			children = (
 				9DE271C722433A1D0021268E /* AppDelegate.swift */,
+				9D2B621222679550005B5E57 /* CardBehavior.swift */,
 				9DE271C922433A1D0021268E /* ViewController.swift */,
 				9DE271CB22433A1D0021268E /* Main.storyboard */,
 				9DE271CE22433A210021268E /* Assets.xcassets */,
@@ -149,6 +152,7 @@
 				9DE431CB224BECAA00945583 /* PlayingCardDeck.swift in Sources */,
 				9DE431C9224BE62D00945583 /* PlayingCard.swift in Sources */,
 				9DE271C822433A1D0021268E /* AppDelegate.swift in Sources */,
+				9D2B621322679550005B5E57 /* CardBehavior.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
