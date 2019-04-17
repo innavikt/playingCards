@@ -1,9 +1,9 @@
 //
 //  AppDelegate.swift
-//  playingCrads
+//  PlayingCardsAgain
 //
-//  Created by inna on 20/03/2019.
-//  Copyright © 2019 inna. All rights reserved.
+//  Created by Alevtina on 25/03/2019.
+//  Copyright © 2019 Alevtina. All rights reserved.
 //
 
 import UIKit

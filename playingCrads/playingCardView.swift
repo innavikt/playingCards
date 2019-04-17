@@ -1,15 +1,31 @@
 //
 //  playingCardView.swift
-//  playingCrads
+//  plaing cards
 //
-//  Created by inna on 20/03/2019.
-//  Copyright © 2019 inna. All rights reserved.
+//  Created by  on 25/03/2019.
+//  Copyright © 2019 . All rights reserved.
 //
 
 import UIKit
 
 @IBDesignable
 class PlayingCardView: UIView {
+    
+    var faceCardScale: CGFloat = SizeRatio.faceCardImageSizeToBoundsSize {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
+    
+    @objc func adjustFaceCardScale(byHandlingGestureRecognizedBy recognizer: UIPinchGestureRecognizer) {
+        switch recognizer.state {
+        case .ended, .changed:
+            faceCardScale *= recognizer.scale
+            recognizer.scale = 1.0
+        default:
+            break
+        }
+    }
     
     @IBInspectable
     var rank: Int = 11 {
@@ -18,7 +34,6 @@ class PlayingCardView: UIView {
             setNeedsLayout()
         }
     }
-    
     @IBInspectable
     var suit: String = "♥️" {
         didSet {
@@ -26,7 +41,6 @@ class PlayingCardView: UIView {
             setNeedsLayout()
         }
     }
-    
     @IBInspectable
     var isFaceUp: Bool = true {
         didSet {
@@ -34,53 +48,46 @@ class PlayingCardView: UIView {
             setNeedsLayout()
         }
     }
-    
-    
-    private func centeredAttributedString(_ string: String, fontSize: CGFloat) -> NSAttributedString {
-        
-        var font = UIFont.preferredFont(forTextStyle: .body).withSize(fontSize)
-        font = UIFontMetrics(forTextStyle: .body).scaledFont(for: font)
-        
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.alignment = .center
-        
-        return NSAttributedString(string: string, attributes: [.paragraphStyle: paragraphStyle, .font: font])
+
+    private func centeredAttributedString(_ string: String, fontSize: CGFloat)
+        ->NSAttributedString{
+            var font = UIFont.preferredFont(forTextStyle: .body).withSize(fontSize)
+            font = UIFontMetrics(forTextStyle: .body).scaledFont(for: font)
+            let paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle.alignment = .center
+            return NSAttributedString(string: string,
+                                      attributes: [.paragraphStyle: paragraphStyle,
+                                                   .font : font])
     }
-    
-    private var cornerString: NSAttributedString {
-        return centeredAttributedString(rankString + "\n" + suit, fontSize: cornerFontSize)
+    private var cornerString: NSAttributedString{
+        return centeredAttributedString(rankString + "\n" + suit, fontSize:
+        cornerFontSize)
     }
-    
-    
-    private lazy var upperLeftCornerLabel: UILabel = createCornerLabel()
-    private lazy var lowerRightCornerLabel: UILabel = createCornerLabel()
-    
-    private func createCornerLabel() -> UILabel {
+    private lazy var upperLeftCornerLabel:UILabel = createCornerLabel()
+
+    private  lazy var lowerRightCornerLabel: UILabel = createCornerLabel()
+    private func createCornerLabel()-> UILabel{
         let label = UILabel()
         label.numberOfLines = 0
         addSubview(label)
         return label
     }
-    
     override func layoutSubviews() {
         super.layoutSubviews()
+        configureCornerLabel(upperLeftCornerLabel)
+        upperLeftCornerLabel.frame.origin = bounds.origin.offsetBy(dx: cornerOffset, dy:cornerOffset)
         
-        configurateCornerLabel(upperLeftCornerLabel)
-        upperLeftCornerLabel.frame.origin = bounds.origin.offsetBy(dx: cornerOffset, dy: cornerOffset)
-        
-        configurateCornerLabel(lowerRightCornerLabel)
+        configureCornerLabel(lowerRightCornerLabel)
         lowerRightCornerLabel.transform = CGAffineTransform.identity
             .translatedBy(x: lowerRightCornerLabel.frame.size.width,
                           y: lowerRightCornerLabel.frame.size.height)
             .rotated(by: CGFloat.pi)
         lowerRightCornerLabel.frame.origin = CGPoint(x: bounds.maxX, y: bounds.maxY)
-            .offsetBy(dx: -cornerOffset,
-                      dy: -cornerOffset)
-            .offsetBy(dx: -lowerRightCornerLabel.frame.size.width,
-                      dy: -lowerRightCornerLabel.frame.size.height)
+        .offsetBy(dx: -cornerOffset, dy: -cornerOffset)
+        .offsetBy(dx: -lowerRightCornerLabel.frame.size.width,
+                  dy: -lowerRightCornerLabel.frame.size.height)
     }
-    
-    private func configurateCornerLabel(_ label: UILabel) {
+    private func configureCornerLabel (_ label: UILabel){
         label.attributedText = cornerString
         label.frame.size = CGSize.zero
         label.sizeToFit()
@@ -91,21 +98,24 @@ class PlayingCardView: UIView {
         setNeedsDisplay()
         setNeedsLayout()
     }
-
-
+    
     override func draw(_ rect: CGRect) {
-        let roundedRect = UIBezierPath(roundedRect: bounds, cornerRadius: 16.0)
+        let roundedRect = UIBezierPath(roundedRect: bounds, cornerRadius: cornerRadius)
         roundedRect.addClip()
         UIColor.white.setFill()
         roundedRect.fill()
-        
         if isFaceUp {
-            if let faceCardImage = UIImage(named: rankString + suit,
-                                           in: Bundle(for: self.classForCoder),
-                                           compatibleWith: traitCollection) {
-                faceCardImage.draw(in: bounds.zoom(by: SizeRatio.faceCardImageSizeToBoundsSize))
+            print(rankString + suit)
+            if let faceCardImage = UIImage(named: rankString + suit,in: Bundle(for: self.classForCoder), compatibleWith: traitCollection) {
+                faceCardImage.draw(in: bounds.zoom(by: faceCardScale))
             } else {
                 drawPips()
+            }
+        } else {
+            if let cardBackImage = UIImage(named: "cardback",
+                                           in: Bundle(for: self.classForCoder),
+                                           compatibleWith: traitCollection) {
+                cardBackImage.draw(in: bounds)
             }
         }
     }
@@ -153,7 +163,6 @@ class PlayingCardView: UIView {
     }
     
 }
-
 
 extension PlayingCardView {
     private struct SizeRatio {

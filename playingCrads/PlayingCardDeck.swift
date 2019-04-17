@@ -1,9 +1,9 @@
 //
 //  PlayingCardDeck.swift
-//  playingCrads
+//  PlayingCardsAgain
 //
-//  Created by inna on 27/03/2019.
-//  Copyright © 2019 inna. All rights reserved.
+//  Created by Alevtina on 27/03/2019.
+//  Copyright © 2019 Alevtina. All rights reserved.
 //
 
 import Foundation
@@ -12,14 +12,13 @@ struct PlayingCardDeck {
     
     private(set) var cards = [PlayingCard]()
     
-    init(){
+    init() {
         for suit in PlayingCard.Suit.all {
             for rank in PlayingCard.Rank.all {
                 cards.append(PlayingCard(suit: suit, rank: rank))
             }
         }
     }
-    
     
     mutating func draw() -> PlayingCard? {
         if cards.count > 0 {
@@ -30,8 +29,6 @@ struct PlayingCardDeck {
     }
 }
 
-
-    
 extension Int {
     var arc4random: Int {
         if self > 0 {

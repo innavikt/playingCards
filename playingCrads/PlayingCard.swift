@@ -1,20 +1,24 @@
 //
 //  PlayingCard.swift
-//  playingCrads
+//  PlayingCardsAgain
 //
-//  Created by inna on 27/03/2019.
-//  Copyright © 2019 inna. All rights reserved.
+//  Created by Alevtina on 27/03/2019.
+//  Copyright © 2019 Alevtina. All rights reserved.
 //
 
 import Foundation
 
-struct PlayingCard {
+struct PlayingCard : CustomStringConvertible {
+    
+    var description: String {
+        return "\(self.suit) \(self.rank)"
+    }
     
     var suit: Suit
     var rank: Rank
     
     enum Suit: String, CustomStringConvertible {
-        
+       
         var description: String {
             return "\(self.rawValue)"
         }
@@ -25,11 +29,10 @@ struct PlayingCard {
         case clubs = "♦️"
         
         static var all = [Suit.spades, .hearts, .diamonds, .clubs]
-        
     }
     
     enum Rank: CustomStringConvertible {
-        
+       
         var description: String {
             switch self {
             case .ace:
@@ -40,7 +43,6 @@ struct PlayingCard {
                 return kind
             }
         }
-        
         
         case ace
         case face(String)
@@ -64,9 +66,9 @@ struct PlayingCard {
                 allRank.append(Rank.numeric(pips))
             }
             allRank += [Rank.face("J"), .face("Q"), .face("K")]
-
-            
             return allRank
         }
+        
     }
+    
 }
